@@ -1,0 +1,17 @@
+# Maven #
+target/
+chapter1/target
+
+# IDEA #
+.idea/
+*.iml
+
+# Eclipse #
+.settings/
+.metadata/
+.classpath
+.project
+Servers/
+
+# vscode #
+.vscode/
