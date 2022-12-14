@@ -1,20 +1,30 @@
 package org.smart4j.chapter2.service;
 
+import lombok.extern.slf4j.Slf4j;
+import org.smart4j.chapter2.helper.DatabaseHelper;
 import org.smart4j.chapter2.model.Customer;
+import org.smart4j.chapter2.util.PropsUtil;
 
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
+@Slf4j
 public class CustomerService {
-
     /**
      * 获取客户列表
      *
      * @return 包含所有客户对象对应的列表
      */
     public List<Customer> getCustomerList() {
-        // TODO
-        return null;
+        String sql = "SELECT * FROM customer";
+        return DatabaseHelper.queryEntityList(Customer.class, sql);
     }
 
     /**
@@ -43,7 +53,7 @@ public class CustomerService {
     /**
      * 根据传入的Map更新对应id用户的对应字段值
      *
-     * @param id 更改的用户id
+     * @param id       更改的用户id
      * @param fieldMap 需要修改的字段对应的键值对
      * @return 返回是否操作成功的结果
      */

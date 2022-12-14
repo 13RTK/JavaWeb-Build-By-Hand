@@ -1,5 +1,6 @@
 package org.smart4j.chapter2.service;
 
+import lombok.NoArgsConstructor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,11 +16,11 @@ import static org.junit.Assert.*;
  * CustomerService单元测试
  */
 public class CustomerServiceTest {
-    private final CustomerService customerService;
+    private final CustomerService customerService = new CustomerService();
 
-    public CustomerServiceTest(CustomerService customerService) {
-        this.customerService = customerService;
-    }
+//    public CustomerServiceTest(CustomerService customerService) {
+//        this.customerService = customerService;
+//    }
 
     @Before
     public void init() {

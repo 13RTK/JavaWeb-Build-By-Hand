@@ -1,8 +1,10 @@
 package org.smart4j.chapter2.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class Customer {
   /**
    * 主键ID
