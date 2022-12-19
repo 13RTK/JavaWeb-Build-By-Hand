@@ -1,8 +1,5 @@
 package org.smart4j.chapter2.service;
 
-import lombok.NoArgsConstructor;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.smart4j.chapter2.model.Customer;
 
@@ -18,54 +15,47 @@ import static org.junit.Assert.*;
 public class CustomerServiceTest {
     private final CustomerService customerService = new CustomerService();
 
-//    public CustomerServiceTest(CustomerService customerService) {
-//        this.customerService = customerService;
-//    }
+    @Test
+    public void createCustomer() {
+        Map<String, Object> fieldMap = new HashMap<String, Object>();
+        fieldMap.put("name", "customer3");
+        fieldMap.put("contact", "Alex");
+        fieldMap.put("telephone", "12312412");
+        fieldMap.put("email", "alex@gmail.com");
 
-    @Before
-    public void init() {
-        // TODO: 2022/12/12 初始化数据库
+        boolean createResult = customerService.createCustomer(fieldMap);
+        assertTrue(createResult);
+        assertEquals("Alex", customerService.getCustomer(1).getContact());
     }
 
     @Test
     public void getCustomerList() {
         List<Customer> customerList = customerService.getCustomerList();
-        assertEquals(2, customerList.size());
+
+        assertEquals(1, customerList.size());
     }
 
     @Test
     public void getCustomer() {
-        long id = 1;
-        Customer customer = customerService.getCustomer(id);
-        assertNotNull(customer);
+        assertEquals("Alex", customerService.getCustomer(1).getContact());
     }
 
-    @Test
-    public void createCustomer() {
-        Map<String, Object> fieldMap = new HashMap<String, Object>();
-        fieldMap.put("name", "customer100");
-        fieldMap.put("contact", "John");
-        fieldMap.put("telephone", "1321541241");
-        boolean result = customerService.createCustomer(fieldMap);
-
-        assertTrue(result);
-    }
 
     @Test
     public void updateCustomer() {
-        long id = 1;
         Map<String, Object> fieldMap = new HashMap<String, Object>();
-        fieldMap.put("contact", "Eric");
-        boolean result = customerService.updateCustomer(id, fieldMap);
+        fieldMap.put("name", "Tami");
 
+        boolean result = customerService.updateCustomer(1, fieldMap);
         assertTrue(result);
+        assertEquals("Tami", customerService.getCustomer(1).getName());
     }
 
     @Test
     public void deleteCustomer() {
-        long id = 1;
-        boolean result = customerService.deleteCustomer(id);
+        boolean b = customerService.deleteCustomer(1);
 
-        assertTrue(result);
+        assertTrue(b);
+        assertNull(customerService.getCustomer(1));
     }
 }

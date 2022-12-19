@@ -27,7 +27,7 @@
             <version>2.2</version>
             <scope>provided</scope>
         </dependency>
-        <!--  JSTL -->
+        <!-- JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>

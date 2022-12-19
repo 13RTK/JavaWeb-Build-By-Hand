@@ -3,17 +3,9 @@ package org.smart4j.chapter2.service;
 import lombok.extern.slf4j.Slf4j;
 import org.smart4j.chapter2.helper.DatabaseHelper;
 import org.smart4j.chapter2.model.Customer;
-import org.smart4j.chapter2.util.PropsUtil;
 
-import java.sql.SQLException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.DriverManager;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 @Slf4j
 public class CustomerService {
@@ -34,8 +26,8 @@ public class CustomerService {
      * @return 匹配该ID的客户对象
      */
     public Customer getCustomer(long id) {
-        // TODO
-        return null;
+        String sql = "SELECT * FROM customer WHERE id =?";
+        return DatabaseHelper.queryEntity(Customer.class, sql, id);
     }
 
 
@@ -46,8 +38,7 @@ public class CustomerService {
      * @return 返回创建操作是否成功的结果
      */
     public boolean createCustomer(Map<String, Object> fieldMap) {
-        // TODO
-        return false;
+        return DatabaseHelper.insertEntity(Customer.class, fieldMap);
     }
 
     /**
@@ -58,8 +49,7 @@ public class CustomerService {
      * @return 返回是否操作成功的结果
      */
     public boolean updateCustomer(long id, Map<String, Object> fieldMap) {
-        // TODO
-        return false;
+        return DatabaseHelper.updateEntity(Customer.class, id, fieldMap);
     }
 
     /**
@@ -69,7 +59,6 @@ public class CustomerService {
      * @return 返回是否删除成功的结果
      */
     public boolean deleteCustomer(long id) {
-        // TODO: 2022/12/12
-        return false;
+        return DatabaseHelper.deleteEntity(Customer.class, id);
     }
 }
