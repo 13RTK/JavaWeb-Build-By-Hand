@@ -6,9 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * @author alex
+ */
 public final class BeanHelper {
     private static final Map<Class<?>, Object> BEAN_MAP = new HashMap<>();
 
+    // 遍历扫描出来的所有类对应的Class实例，通过反射得到它们的对象实例，再将Class<?>-Object键值对放入映射中
     static {
         Set<Class<?>> beanClassSet = ClassHelper.getBeanClassSet();
         for (Class<?> beanClass : beanClassSet) {
