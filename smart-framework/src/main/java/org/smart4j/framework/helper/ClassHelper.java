@@ -2,7 +2,6 @@ package org.smart4j.framework.helper;
 
 import org.smart4j.framework.annotation.Controller;
 import org.smart4j.framework.annotation.Service;
-import org.smart4j.framework.helper.ConfigHelper;
 import org.smart4j.framework.util.ClassUtil;
 
 import java.util.HashSet;

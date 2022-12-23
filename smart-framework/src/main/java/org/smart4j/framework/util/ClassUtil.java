@@ -59,6 +59,8 @@ public final class ClassUtil {
                         // 简单文件，将其中Base64编码的空格(%20)替换回来，重新拼接成包路径
                         String packagePath = url.getPath().replaceAll("%20", " ");
                         addClass(classSet, packagePath, packageName);
+
+                        // Jar文件，获取其中所有的class文件，并通过其类名加载对应的类后，添加到集合中
                     } else if (protocol.equals("jar")) {
                         // 获取Jar连接对象，将Jar文件中的所有class文件对应的名称提取出来
                         JarURLConnection jarURLConnection = (JarURLConnection) url.openConnection();
@@ -71,6 +73,7 @@ public final class ClassUtil {
                                     JarEntry jarEntry = jarEntries.nextElement();
                                     String jarEntryName = jarEntry.getName();
 
+                                    // 匹配class文件，通过Class.forName方法加载对应的Class实例并添加
                                     if (jarEntryName.endsWith(".class")) {
                                         String className = jarEntryName.substring(0, jarEntryName.lastIndexOf(".")).replaceAll("/", ".");
                                         doAddClass(classSet, className);
@@ -105,7 +108,7 @@ public final class ClassUtil {
 
                 doAddClass(classSet, className);
 
-                // 如果还是路径，则重新拼接成一个新的路径后，再次调用本方法处理该子路径其中的文件
+                // 如果还是路径，则重新拼接成一个新的路径后，再次调用本方法处理子路径其中的文件
             } else {
                 String subPackagePath = fileName;
                 if (StringUtil.isNotEmpty(packagePath)) {
@@ -121,6 +124,12 @@ public final class ClassUtil {
         }
     }
 
+    /**
+     * 加载对应名称的类，获取对应的Class实例后加入到结果集中
+     *
+     * @param classSet 所有类的集合
+     * @param className 加载的类对应的名称
+     */
     private static void doAddClass(Set<Class<?>> classSet, String className) {
         Class<?> cls = loadClass(className, false);
         classSet.add(cls);
