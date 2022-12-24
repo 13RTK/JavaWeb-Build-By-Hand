@@ -1,6 +1,8 @@
 package org.smart4j.framework.helper;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.smart4j.framework.annotation.Inject;
 import org.smart4j.framework.util.CollectionUtil;
 import org.smart4j.framework.util.ReflectionUtil;
@@ -12,10 +14,11 @@ import java.util.Map;
  * @author alex
  */
 public final class IocHelper {
+    private static final Logger LOGGER = LoggerFactory.getLogger(IocHelper.class);
+
     static {
         Map<Class<?>, Object> beanMap = BeanHelper.getBeanMap();
         if (CollectionUtil.isNotEmpty(beanMap)) {
-
             // 遍历Map中的每个EntrySet
             for (Map.Entry<Class<?>, Object> beanEntrySet : beanMap.entrySet()) {
                 Class<?> beanClass = beanEntrySet.getKey();

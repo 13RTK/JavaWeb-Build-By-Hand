@@ -48,10 +48,10 @@ public final class ClassHelper {
 
     // 将所有类的Class实例都添加到Set中返回
     public static Set<Class<?>> getBeanClassSet() {
-        Set<Class<?>> classSet = new HashSet<>();
-        classSet.addAll(getControllerClassSet());
-        classSet.addAll(getServiceClassSet());
+        Set<Class<?>> beanClassSet = new HashSet<>();
+        beanClassSet.addAll(getServiceClassSet());
+        beanClassSet.addAll(getControllerClassSet());
 
-        return classSet;
+        return beanClassSet;
     }
 }

@@ -22,6 +22,7 @@ public final class ClassUtil {
         return Thread.currentThread().getContextClassLoader();
     }
 
+
     /**
      * @param className     加载的类名
      * @param isInitialized 是否进行初始化（是否执行类的静态代码块）
@@ -37,6 +38,10 @@ public final class ClassUtil {
         }
 
         return cls;
+    }
+
+    public static Class<?> loadClass(String className) {
+        return loadClass(className, true);
     }
 
     /**

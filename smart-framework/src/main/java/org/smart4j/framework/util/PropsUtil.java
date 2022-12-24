@@ -20,8 +20,10 @@ public final class PropsUtil {
             if (is == null) {
                 throw new FileNotFoundException(fileName + " file is not found");
             }
+
+            properties = new Properties();
             properties.load(is);
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             LOGGER.error("load properties file failure", e);
         } finally {
             try {

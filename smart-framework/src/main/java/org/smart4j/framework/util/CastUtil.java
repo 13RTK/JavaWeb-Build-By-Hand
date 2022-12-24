@@ -52,7 +52,7 @@ public final class CastUtil {
                 try {
                     doubleValue = Double.parseDouble(strValue);
                 } catch (NumberFormatException e) {
-                    e.printStackTrace();
+                    doubleValue = defaultValue;
                 }
             }
         }
@@ -67,7 +67,7 @@ public final class CastUtil {
      * @return 转换后的long类型
      */
     public static long castLong(Object obj) {
-        return CastUtil.castLong(obj, 0L);
+        return CastUtil.castLong(obj, 0);
     }
 
     /**
@@ -86,7 +86,7 @@ public final class CastUtil {
                 try {
                     longValue = Long.parseLong(strValue);
                 } catch (NumberFormatException e) {
-                    e.printStackTrace();
+                    longValue = defaultValue;
                 }
             }
         }
@@ -101,7 +101,7 @@ public final class CastUtil {
      * @return 转换后的int类型
      */
     public static int castInt(Object obj) {
-        return CastUtil.castInt(obj);
+        return CastUtil.castInt(obj, 0);
     }
 
     /**
@@ -120,7 +120,7 @@ public final class CastUtil {
                 try {
                     intValue = Integer.parseInt(strValue);
                 } catch (NumberFormatException e) {
-                    e.printStackTrace();
+                    intValue = defaultValue;
                 }
             }
         }
@@ -135,7 +135,7 @@ public final class CastUtil {
      * @return 转换后的boolean类型
      */
     public static boolean castBoolean(Object obj) {
-        return castBoolean(obj, false);
+        return CastUtil.castBoolean(obj, false);
     }
 
     /**

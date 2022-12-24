@@ -15,7 +15,7 @@ public final class ReflectionUtil {
         try {
             instance = cls.newInstance();
         } catch (Exception e) {
-            LOGGER.error("new instance failure", e);
+            LOGGER.error("new instance failure, class : " + cls.getSimpleName(), e);
             throw new RuntimeException(e);
         }
 
